@@ -1,0 +1,15 @@
+curl 'https://webs.asia.edu.tw/stdinfo/login_std.asp'  -H 'Cookie: ASPSESSIONIDQWBBARCR=LJCDLLJDCPAINOCEIGJADBBD; ASPSESSIONIDQUAACQCQ=MBIFHDDBHOMCEJHHKCDALIHA; ASPSESSIONIDSWBCDSCS=BIGHBLMBBGCPBPJDPOMMEDDM;' --data-raw 'f_id=Account&f_pwd=Password'
+
+curl 'https://webs.asia.edu.tw/stdinfo/main.asp' -H 'Cookie: ASPSESSIONIDQWBBARCR=LJCDLLJDCPAINOCEIGJADBBD; ASPSESSIONIDQUAACQCQ=NBIFHDDBCIFEKJPNCPOAFOOF; ASPSESSIONIDSWBCDSCS=BIGHBLMBBGCPBPJDPOMMEDDM;
+
+Wrong Password.
+<head><title>w</title></head>                                                                                                                                          
+<body><h1>w</h1>iOb<a HREF="loginerr.asp">o</a>.</body>
+
+Outdated
+<head><title>w</title></head>
+<body><h1>w</h1>iOb<a HREF="logout.asp">o</a>.</body>
+
+Passed
+<head><title>w</title></head>
+<body><h1>w</h1>iOb<a HREF="main.asp">o</a>.</body>
