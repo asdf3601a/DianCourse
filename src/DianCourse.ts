@@ -30,15 +30,17 @@ class DianCourse {
 					response.on("data", (chunk) => {
 						let buffer = Buffer.from(chunk)
 						let $ = cheerio.load(buffer.toString())
-						let isSuccess = $("a").attr('href') == "main.asp"
+						let isSuccess = $("a").attr("href") == "main.asp"
 
 						if (response.headers["set-cookie"] && isSuccess) {
 							resolve(response.headers["set-cookie"][0].split(";")[0])
-						} else rejects(new Error("Fail to login."))
+						} else {
+							rejects(new Error("Wrong ID or Password."))
+						}
 					})
 				}
 			)
-			
+
 			request.on("error", (err) => {
 				rejects(err)
 			})
