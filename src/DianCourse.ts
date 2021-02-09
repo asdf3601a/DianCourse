@@ -38,6 +38,7 @@ class DianCourse {
 					})
 				}
 			)
+			
 			request.on("error", (err) => {
 				rejects(err)
 			})
