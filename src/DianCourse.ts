@@ -11,13 +11,7 @@ class DianCourse {
 
 	static auth(account: string, password: string) {
 		return new Promise((resolve, reject) => {
-			type dataParams = {
-				readonly f_id: string,
-				readonly f_pwd: string
-			}
-
-			let postData: dataParams = { f_id: account, f_pwd: password }
-			let stringifyData = querystring.stringify(postData)
+			let postData = "f_id="+account+"&f_pwd="+password
 
 			let request = https.request(
 				{
@@ -27,7 +21,7 @@ class DianCourse {
 					method: "POST",
 					headers: {
 						"Content-Type": "application/x-www-form-urlencoded",
-						"Content-Length": stringifyData.length
+						"Content-Length": postData.length
 					}
 				},
 				(response) => {
@@ -49,21 +43,21 @@ class DianCourse {
 				reject(err)
 			})
 
-			request.write(stringifyData)
+			request.write(postData)
 
 			request.end()
 		})
 	}
 
 	getMainPage() {
-		return this.get("/stdinfo/main.asp")
+		return this.getPath("/stdinfo/main.asp")
 	}
 
-	getPageByID(id: string) {
-		return this.get("/stdinfo/main.asp?FID=" + id)
+	getPathByID(id: string) {
+		return this.getPath("/stdinfo/main.asp?FID=" + id)
 	}
 
-	private get(path: string) {
+	getPath(path: string) {
 		return new Promise((resolve, reject) => {
 			let request = https.request(
 				{
@@ -88,6 +82,42 @@ class DianCourse {
 			})
 
 			request.end()
+		})
+	}
+
+	postPathByID(id: string, postData: string) {
+		return this.postPath("?FID="+id, postData)
+	}
+
+	postPath(path: string, postData: string) {
+		return new Promise((resolve, reject) => {
+			let request = https.request(
+				{
+					hostname: "webs.asia.edu.tw",
+					port: 443,
+					path: path,
+					method: "POST",
+					headers: {
+						"Content-Type": "application/x-www-form-urlencoded",
+						"Content-Length": postData.length,
+						"Cookie": this.identify
+					}
+				},
+				(response) => {
+					response.on("data", (chunk) => {
+						let buffer = Buffer.from(chunk)
+						resolve(buffer.toString("utf-8"))
+					})
+				}
+			)
+
+			request.on("error", (err) => {
+				reject(err)
+			})
+	
+			request.write(postData)
+	
+			request.end()	
 		})
 	}
 }
