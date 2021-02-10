@@ -1,7 +1,6 @@
 import * as https from "https"
 import * as cheerio from "cheerio"
 import * as querystring from "querystring"
-import { resolve } from "path"
 
 class DianCourse {
 	identify: string
@@ -61,7 +60,7 @@ class DianCourse {
 	}
 
 	getPageByID(id: string) {
-		return this.get("/stdinfo/main.asp?FID="+id)
+		return this.get("/stdinfo/main.asp?FID=" + id)
 	}
 
 	private get(path: string) {
@@ -87,7 +86,7 @@ class DianCourse {
 			request.on("error", (err) => {
 				reject(err)
 			})
-	
+
 			request.end()
 		})
 	}

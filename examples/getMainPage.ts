@@ -1,4 +1,4 @@
-import {DianCourse} from "../src/DianCourse"
+import { DianCourse } from "../src/DianCourse"
 
 async function main() {
     let identify = await DianCourse.auth("Account", "Password")
