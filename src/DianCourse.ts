@@ -26,8 +26,7 @@ class DianCourse {
 				},
 				(response) => {
 					response.on("data", (chunk) => {
-						let buffer = Buffer.from(chunk)
-						let $ = cheerio.load(buffer.toString("utf-8"))
+						let $ = cheerio.load(chunk.toString("utf-8"))
 						let isSuccess = $("a").attr("href") == "main.asp"
 
 						if (response.headers["set-cookie"] && isSuccess) {
@@ -71,8 +70,7 @@ class DianCourse {
 				},
 				(response) => {
 					response.on("data", (chunk) => {
-						let buffer = Buffer.from(chunk)
-						resolve(buffer.toString("utf-8"))
+						resolve(chunk)
 					})
 				}
 			)
@@ -105,8 +103,7 @@ class DianCourse {
 				},
 				(response) => {
 					response.on("data", (chunk) => {
-						let buffer = Buffer.from(chunk)
-						resolve(buffer.toString("utf-8"))
+						resolve(chunk)
 					})
 				}
 			)
