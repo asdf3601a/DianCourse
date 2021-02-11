@@ -1,5 +1,4 @@
 import * as https from "https"
-import * as cheerio from "cheerio"
 
 interface options {
 	hostname: string,
@@ -41,9 +40,8 @@ class DianCourse {
 				},
 				(response) => {
 					response.on("data", (chunk) => {
-						let $ = cheerio.load(chunk.toString("utf-8"))
-
-						if (response.headers["set-cookie"] && $("a").attr("href") == "main.asp") {
+						let content = chunk.toString("utf-8") as string
+						if (response.headers["set-cookie"] && content.match("main.asp")) {
 							resolve(response.headers["set-cookie"][0].split(";")[0])
 						} else {
 							reject(new Error("Wrong ID or Password."))
