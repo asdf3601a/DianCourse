@@ -10,10 +10,10 @@ interface options {
 }
 
 class DianCourse {
-	identify: string
+	token: string
 	options: options
 
-	constructor(identify: string) {
+	constructor(token: string) {
 		this.options = {
 			hostname: "webs.asia.edu.tw",
 			port: 443,
@@ -21,7 +21,7 @@ class DianCourse {
 			method: "",
 			headers: {},
 		}
-		this.identify = identify
+		this.token = token
 	}
 
 	static auth(id: string, pwd: string) {
@@ -63,7 +63,7 @@ class DianCourse {
 			let options = this.options
 			options["path"] = path
 			options["method"] = "GET"
-			options["headers"] = { "Cookie": this.identify }
+			options["headers"] = { "Cookie": this.token }
 
 			let request = https.request(
 				options as object,
@@ -88,7 +88,7 @@ class DianCourse {
 			options["headers"] = {
 				"Content-Type": "application/x-www-form-urlencoded",
 				"Content-Length": postData.length,
-				"Cookie": this.identify
+				"Cookie": this.token
 			}
 
 			let request = https.request(
